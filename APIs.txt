@@ -1,0 +1,2 @@
+https://covid19indiaapi.herokuapp.com/v1/overall (overall count)
+https://covid19indiaapi.herokuapp.com/v1/states  (state wise)

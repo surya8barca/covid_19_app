@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 void main() => runApp(MaterialApp(
@@ -21,7 +19,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.blueGrey,
         centerTitle: true,
         title: Text(
-          'Covid-19',
+          'Covid-19 Tracker',
           style: TextStyle(
             fontSize: 28.0,
             color: Colors.black,
