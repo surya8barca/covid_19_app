@@ -1,3 +1,4 @@
+import 'package:covid_19/states.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -45,7 +46,7 @@ class _HomeState extends State<Home> {
           );
     } else {
       return Scaffold(
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.lightBlue,
             appBar: AppBar(
               backgroundColor: Colors.blueGrey,
               centerTitle: true,
@@ -59,7 +60,6 @@ class _HomeState extends State<Home> {
             ),
             body: Container(
               padding: EdgeInsets.all(10),
-              color: Colors.lightBlue,
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               child: Column(
@@ -100,6 +100,17 @@ class _HomeState extends State<Home> {
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 40,
+                    ),
+                  ),
+                  RaisedButton(
+                    color: Colors.red,
+                    padding: EdgeInsets.all(10),
+                    onPressed: (){
+                      Route route = MaterialPageRoute(builder: (context) => States());
+                      Navigator.push(context, route);
+                    },
+                    child: Text(
+                      'State-wise Analysis'
                     ),
                   ),
                 ],
