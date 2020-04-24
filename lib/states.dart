@@ -1,5 +1,3 @@
-
-
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -7,10 +5,7 @@ import 'package:covid_19/selectedstate.dart';
 import 'package:http/http.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-void main() => runApp(MaterialApp(
-  home:States()
-)
-);
+void main() => runApp(MaterialApp(home: States()));
 
 class States extends StatefulWidget {
   @override
@@ -18,16 +13,15 @@ class States extends StatefulWidget {
 }
 
 class _HomeState extends State<States> {
-  
   Map info;
   List<String> states;
   String stateSelected;
 
   Future<void> stateData() async {
     final data = await get('https://covid19indiaapi.herokuapp.com/v1/states');
-    info =jsonDecode(data.body);
+    info = jsonDecode(data.body);
     setState(() {
-      states=info.keys.toList();
+      states = info.keys.toList();
     });
   }
 
@@ -36,83 +30,124 @@ class _HomeState extends State<States> {
     super.initState();
     stateData();
   }
+
   @override
   Widget build(BuildContext context) {
-  if ((info == null)) {
+    if ((info == null)) {
       return Scaffold(
-            backgroundColor: Colors.lightBlue,
-            body: Center(
-              child: SpinKitHourGlass(
-                color: Colors.red,
-                size: 200.0,
-              ),
-            ),
-          );
-    } else {
-      return Scaffold(
-      backgroundColor: Colors.lightBlue,
-      appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
-        centerTitle: true,
-        title: Text(
-          'Covid-19 Tracker',
-          style: TextStyle(
-            fontSize: 28.0,
-            color: Colors.black,
+        backgroundColor: Colors.lightBlue,
+        body: Center(
+          child: SpinKitHourGlass(
+            color: Colors.red,
+            size: 200.0,
           ),
         ),
-      ),
-      body: SingleChildScrollView(
-        child:Container(
-          padding: EdgeInsets.all(10),
+      );
+    } else {
+      return Scaffold(
+        backgroundColor: Colors.lightBlue,
+        appBar: AppBar(
+          backgroundColor: Colors.blueGrey,
+          centerTitle: true,
+          title: Text(
+            'Covid-19 Tracker',
+            style: TextStyle(
+              fontSize: 28.0,
+              color: Colors.black,
+            ),
+          ),
+        ),
+        body: SingleChildScrollView(
+            child: Container(
+          padding: EdgeInsets.all(5),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              DropdownButton(
-                underline: Container(),
-                icon: Icon(Icons.arrow_drop_down_circle),
-                iconEnabledColor: Colors.black,
-                iconSize: 50,
-                hint: Text(
-                  'Select State ->',
-                  style: TextStyle(
-                    fontSize: 40,
-                    color: Colors.black,
-                  ),
-                ),
-                items: states.map<DropdownMenuItem<String>>((value){
-                  return DropdownMenuItem<String>(
-                    child: Text(
-                        value,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),),
-                    value: value,
-                  );
-                }).toList(),
-                style: TextStyle(
-                  color:Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-                onChanged: (chosen){
-                  setState(() {
-                    stateSelected=chosen;   
-                  });
-                },
-                value: stateSelected,
+              SizedBox(
+                height: 25,
               ),
-              SizedBox(height:30),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  DropdownButton(
+                    iconEnabledColor: Colors.black,
+                    underline: Container(),
+                    hint: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black),
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.cyan,
+                      ),
+                      padding: EdgeInsets.all(5),
+                      width: MediaQuery.of(context).size.width - 34,
+                      child: Text(
+                        'Select State:',
+                        style: TextStyle(
+                          fontSize: 35,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    items: states.map<DropdownMenuItem<String>>((value) {
+                      return DropdownMenuItem<String>(
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              padding: EdgeInsets.all(5),
+                              height: 48,
+                              width: MediaQuery.of(context).size.width - 34,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black),
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.cyan,
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Text(
+                                    value,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        value: value,
+                      );
+                    }).toList(),
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    onChanged: (chosen) {
+                      setState(() {
+                        stateSelected = chosen;
+                      });
+                    },
+                    value: stateSelected,
+                  ),
+                ],
+              ),
+              SizedBox(height: 30),
               RaisedButton(
                 color: Colors.black,
-                onPressed: (){
-                  if(stateSelected==null)
-                  {
-                    Alert(context: context, title: 'No State Selected',desc: 'Please Select a State',buttons: [],style: AlertStyle(backgroundColor: Colors.cyan)).show();
-                  }
-                  else
-                  {
-                    Route route = MaterialPageRoute(builder: (context) => Selectedstate(info:info,state:stateSelected));
+                onPressed: () {
+                  if (stateSelected == null) {
+                    Alert(
+                            context: context,
+                            title: 'No State Selected',
+                            desc: 'Please Select a State',
+                            buttons: [],
+                            style: AlertStyle(backgroundColor: Colors.cyan))
+                        .show();
+                  } else {
+                    Route route = MaterialPageRoute(
+                        builder: (context) =>
+                            Selectedstate(info: info, state: stateSelected));
                     Navigator.push(context, route);
                   }
                 },
@@ -123,8 +158,10 @@ class _HomeState extends State<States> {
                       Icons.done,
                       color: Colors.blue,
                       size: 60,
-                      ),
-                    SizedBox(width: 10,),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
                     Text(
                       'Submit',
                       style: TextStyle(
@@ -134,27 +171,35 @@ class _HomeState extends State<States> {
                     ),
                   ],
                 ),
-                ),
-                SizedBox(height: 10,),
-                Divider(
-                  color: Colors.black,
-                  thickness: 5,
-                ),
-                SizedBox(height: 10,),
-                Text(
-                  'Quick Links',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    decoration: TextDecoration.underline,
-                  ), 
-                ),
-                SizedBox(height: 10,),
-                RaisedButton(
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Divider(
                 color: Colors.black,
-                onPressed: (){
-                  Route route = MaterialPageRoute(builder: (context) => Selectedstate(info:info,state:'Delhi'));
-                    Navigator.push(context, route);
+                thickness: 5,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Quick Links',
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.underline,
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              RaisedButton(
+                color: Colors.black,
+                onPressed: () {
+                  Route route = MaterialPageRoute(
+                      builder: (context) =>
+                          Selectedstate(info: info, state: 'Delhi'));
+                  Navigator.push(context, route);
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -163,8 +208,10 @@ class _HomeState extends State<States> {
                       Icons.people,
                       color: Colors.blue,
                       size: 60,
-                      ),
-                    SizedBox(width: 10,),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
                     Text(
                       'Delhi',
                       style: TextStyle(
@@ -174,13 +221,17 @@ class _HomeState extends State<States> {
                     ),
                   ],
                 ),
-                ),
-                SizedBox(height: 10,),
-                RaisedButton(
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              RaisedButton(
                 color: Colors.black,
-                onPressed: (){
-                  Route route = MaterialPageRoute(builder: (context) => Selectedstate(info:info,state:'Maharashtra'));
-                    Navigator.push(context, route);
+                onPressed: () {
+                  Route route = MaterialPageRoute(
+                      builder: (context) =>
+                          Selectedstate(info: info, state: 'Maharashtra'));
+                  Navigator.push(context, route);
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -189,8 +240,10 @@ class _HomeState extends State<States> {
                       Icons.directions_transit,
                       color: Colors.blue,
                       size: 60,
-                      ),
-                    SizedBox(width: 10,),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
                     Text(
                       'Maharashtra',
                       style: TextStyle(
@@ -200,13 +253,17 @@ class _HomeState extends State<States> {
                     ),
                   ],
                 ),
-                ),
-                SizedBox(height: 10,),
-                RaisedButton(
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              RaisedButton(
                 color: Colors.black,
-                onPressed: (){
-                  Route route = MaterialPageRoute(builder: (context) => Selectedstate(info:info,state:'Punjab'));
-                    Navigator.push(context, route);
+                onPressed: () {
+                  Route route = MaterialPageRoute(
+                      builder: (context) =>
+                          Selectedstate(info: info, state: 'Punjab'));
+                  Navigator.push(context, route);
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -215,8 +272,10 @@ class _HomeState extends State<States> {
                       Icons.terrain,
                       color: Colors.blue,
                       size: 60,
-                      ),
-                    SizedBox(width: 10,),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
                     Text(
                       'Punjab',
                       style: TextStyle(
@@ -226,11 +285,13 @@ class _HomeState extends State<States> {
                     ),
                   ],
                 ),
-                ),
-                SizedBox(height: 30,),
-                RaisedButton(
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              RaisedButton(
                 color: Colors.black,
-                onPressed: (){
+                onPressed: () {
                   Navigator.pop(context);
                 },
                 child: Row(
@@ -240,8 +301,10 @@ class _HomeState extends State<States> {
                       Icons.home,
                       color: Colors.blue,
                       size: 60,
-                      ),
-                    SizedBox(width: 10,),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
                     Text(
                       'India',
                       style: TextStyle(
@@ -251,12 +314,11 @@ class _HomeState extends State<States> {
                     ),
                   ],
                 ),
-                ),
+              ),
             ],
           ),
-        )
-      ),
-    );
+        )),
+      );
     }
   }
 }
