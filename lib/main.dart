@@ -36,83 +36,215 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     if ((confirmed == null)) {
       return Scaffold(
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Colors.white,
         body: Center(
-          child: SpinKitPumpingHeart(
-            color: Colors.red,
-            size: 200.0,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'COVID-19 TRACKER',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 35,
+                    color: Colors.red),
+              ),
+              Text(
+                'INDIA',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 35,
+                  color: Colors.blue,
+                ),
+              ),
+              SpinKitPumpingHeart(
+                color: Colors.red,
+                size: 150.0,
+              ),
+            ],
           ),
         ),
       );
     } else {
       return Scaffold(
-        backgroundColor: Colors.lightBlue,
         appBar: AppBar(
-          backgroundColor: Colors.blueGrey,
+          backgroundColor: Colors.lightBlueAccent,
           centerTitle: true,
           title: Text(
-            'Covid-19 Tracker',
+            'Covid-19',
             style: TextStyle(
-              fontSize: 28.0,
+              fontSize: 40.0,
               color: Colors.black,
             ),
           ),
         ),
-        body: Container(
-          padding: EdgeInsets.all(10),
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'India\'s Covid-19 Updates',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    decoration: TextDecoration.underline,
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold),
+        body: SingleChildScrollView(
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(
+                    'https://www.bdpinternational.com/uploads/attachments/ck6axr5izcptnksqp75lnejn5-update-images4.0.130.2500.1406.max.png'),
+                fit: BoxFit.cover,
               ),
-              Text(
-                'Total Cases:$confirmed',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 40,
+            ),
+            padding: EdgeInsets.all(10),
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  'India\'s Covid-19',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white60,
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold),
                 ),
-              ),
-              Text(
-                'Active:$active',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 40,
+                SizedBox(height: 20),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        'Statistics',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Divider(
+                        color: Colors.blue,
+                        thickness: 3,
+                        indent: 20,
+                        endIndent: 20,
+                      ),
+                      SizedBox(height: 15),
+                      Text(
+                        'Total : $confirmed',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.yellow,
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Active: $active',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.orange,
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Recovered: $recovered',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.green,
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Deaths: $deaths',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 15),
+                      Divider(
+                        color: Colors.blue,
+                        thickness: 3,
+                        indent: 20,
+                        endIndent: 20,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text('Source: Ministry of Health and Family Welfare',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold)),
+                      SizedBox(height: 10),
+                    ],
+                  ),
                 ),
-              ),
-              Text(
-                'Recovered:$recovered',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 40,
+                SizedBox(height: 20),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.red),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        'Click below for\nState-wise Statistics',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      RaisedButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        color: Colors.cyan,
+                        padding: EdgeInsets.all(10),
+                        onPressed: () {
+                          Route route =
+                              MaterialPageRoute(builder: (context) => States());
+                          Navigator.push(context, route);
+                        },
+                        child: Text(
+                          'State-wise Statistics',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 25,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Text(
-                'Deaths:$deaths',
-                style: TextStyle(
+                SizedBox(height: 20),
+                Divider(
                   color: Colors.black,
-                  fontSize: 40,
+                  thickness: 3,
+                  indent: 10,
+                  endIndent: 10,
                 ),
-              ),
-              RaisedButton(
-                color: Colors.red,
-                padding: EdgeInsets.all(10),
-                onPressed: () {
-                  Route route =
-                      MaterialPageRoute(builder: (context) => States());
-                  Navigator.push(context, route);
-                },
-                child: Text('State-wise Analysis'),
-              ),
-            ],
+                Text('"Stay At Home, Stay Safe"',
+                    style: TextStyle(
+                        fontSize: 29,
+                        color: Colors.yellowAccent,
+                        fontWeight: FontWeight.bold)),
+                Divider(
+                  color: Colors.black,
+                  thickness: 3,
+                  indent: 10,
+                  endIndent: 10,
+                ),
+              ],
+            ),
           ),
         ),
       );
