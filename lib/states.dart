@@ -137,7 +137,8 @@ class _HomeState extends State<States> {
                               height: 60,
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
-                                border: Border.all(color: Colors.white),
+                                border:
+                                    Border.all(color: Colors.white, width: 2),
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.black,
                               ),
@@ -176,8 +177,11 @@ class _HomeState extends State<States> {
                       padding: EdgeInsets.all(10),
                       color: Colors.lightBlue,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
+                          borderRadius: BorderRadius.circular(15),
+                          side: BorderSide(
+                            color: Colors.black,
+                            width: 3,
+                          )),
                       onPressed: () {
                         if (stateSelected == null) {
                           Alert(
@@ -222,138 +226,217 @@ class _HomeState extends State<States> {
               SizedBox(
                 height: 10,
               ),
-              Text(
-                'Quick Links',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  decoration: TextDecoration.underline,
+              Container(
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.white, width: 5),
+                  borderRadius: BorderRadius.circular(15),
                 ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              RaisedButton(
-                color: Colors.black,
-                onPressed: () {
-                  Route route = MaterialPageRoute(
-                      builder: (context) =>
-                          Selectedstate(info: info, state: 'Delhi'));
-                  Navigator.push(context, route);
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                child: Column(
                   children: <Widget>[
-                    Icon(
-                      Icons.people,
-                      color: Colors.blue,
-                      size: 60,
+                    Text(
+                      'Quick Links',
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.yellow,
+                      ),
                     ),
                     SizedBox(
-                      width: 10,
+                      height: 10,
                     ),
-                    Text(
-                      'Delhi',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 40,
+                    Divider(
+                      color: Colors.blue,
+                      thickness: 3,
+                      indent: 20,
+                      endIndent: 20,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    RaisedButton(
+                      padding: EdgeInsets.all(10),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          side: BorderSide(
+                              color: Colors.red,
+                              width: 3,
+                              style: BorderStyle.solid)),
+                      color: Colors.black,
+                      onPressed: () {
+                        Route route = MaterialPageRoute(
+                            builder: (context) =>
+                                Selectedstate(info: info, state: 'Delhi'));
+                        Navigator.push(context, route);
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            Icons.people,
+                            color: Colors.white,
+                            size: 40,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            'Delhi',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 40,
+                            ),
+                          ),
+                        ],
                       ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    RaisedButton(
+                      padding: EdgeInsets.all(10),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          side: BorderSide(
+                              color: Colors.red,
+                              width: 3,
+                              style: BorderStyle.solid)),
+                      color: Colors.black,
+                      onPressed: () {
+                        Route route = MaterialPageRoute(
+                            builder: (context) => Selectedstate(
+                                info: info, state: 'Maharashtra'));
+                        Navigator.push(context, route);
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            Icons.directions_transit,
+                            color: Colors.white,
+                            size: 40,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            'Maharashtra',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 40,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    RaisedButton(
+                      padding: EdgeInsets.all(10),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          side: BorderSide(
+                              color: Colors.red,
+                              width: 3,
+                              style: BorderStyle.solid)),
+                      color: Colors.black,
+                      onPressed: () {
+                        Route route = MaterialPageRoute(
+                            builder: (context) =>
+                                Selectedstate(info: info, state: 'Punjab'));
+                        Navigator.push(context, route);
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            Icons.terrain,
+                            color: Colors.white,
+                            size: 40,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            'Punjab',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 40,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    RaisedButton(
+                      padding: EdgeInsets.all(10),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          side: BorderSide(
+                              color: Colors.red,
+                              width: 3,
+                              style: BorderStyle.solid)),
+                      color: Colors.black,
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            Icons.home,
+                            color: Colors.white,
+                            size: 40,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            'India',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 40,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Divider(
+                      color: Colors.blue,
+                      thickness: 3,
+                      indent: 20,
+                      endIndent: 20,
+                    ),
+                    SizedBox(
+                      height: 10,
                     ),
                   ],
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
-              RaisedButton(
+              SizedBox(height: 20),
+              Divider(
                 color: Colors.black,
-                onPressed: () {
-                  Route route = MaterialPageRoute(
-                      builder: (context) =>
-                          Selectedstate(info: info, state: 'Maharashtra'));
-                  Navigator.push(context, route);
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(
-                      Icons.directions_transit,
-                      color: Colors.blue,
-                      size: 60,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'Maharashtra',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 40,
-                      ),
-                    ),
-                  ],
-                ),
+                thickness: 3,
+                indent: 10,
+                endIndent: 10,
               ),
-              SizedBox(
-                height: 10,
-              ),
-              RaisedButton(
+              Text('"Stay At Home, Stay Safe"',
+                  style: TextStyle(
+                      fontSize: 29,
+                      color: Colors.yellowAccent,
+                      fontWeight: FontWeight.bold)),
+              Divider(
                 color: Colors.black,
-                onPressed: () {
-                  Route route = MaterialPageRoute(
-                      builder: (context) =>
-                          Selectedstate(info: info, state: 'Punjab'));
-                  Navigator.push(context, route);
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(
-                      Icons.terrain,
-                      color: Colors.blue,
-                      size: 60,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'Punjab',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 40,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              RaisedButton(
-                color: Colors.black,
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(
-                      Icons.home,
-                      color: Colors.blue,
-                      size: 60,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'India',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 40,
-                      ),
-                    ),
-                  ],
-                ),
+                thickness: 3,
+                indent: 10,
+                endIndent: 10,
               ),
             ],
           ),

@@ -69,7 +69,7 @@ class _HomeState extends State<Home> {
     } else {
       return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.lightBlueAccent,
+          backgroundColor: Colors.lightBlue,
           centerTitle: true,
           title: Text(
             'Covid-19',
@@ -94,18 +94,38 @@ class _HomeState extends State<Home> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  'India\'s Covid-19',
+                  'Covid-19 Updates',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.white60,
                       fontSize: 40,
                       fontWeight: FontWeight.bold),
                 ),
+                Text(
+                  'India',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.orange,
+                      fontSize: 50,
+                      fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Divider(
+                  color: Colors.blue,
+                  thickness: 3,
+                  indent: 20,
+                  endIndent: 20,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
                 SizedBox(height: 20),
                 Container(
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white),
+                    border: Border.all(color: Colors.white, width: 5),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Column(
@@ -187,7 +207,7 @@ class _HomeState extends State<Home> {
                 Container(
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.red),
+                    border: Border.all(color: Colors.red, width: 2),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Column(
@@ -205,6 +225,7 @@ class _HomeState extends State<Home> {
                       RaisedButton(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
+                          side: BorderSide(width: 2),
                         ),
                         color: Colors.cyan,
                         padding: EdgeInsets.all(10),

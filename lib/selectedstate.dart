@@ -51,14 +51,11 @@ class _HomeState extends State<Selectedstate> {
       stateinfo = widget.info[widget.state];
     });
     getKey();
-    print(key);
-    print(stateinfo.keys);
     if (key != null) {
       setState(() {
         infolatest = stateinfo[key];
       });
     }
-    print(infolatest.toString());
     if (key != null) {
       getDetails();
     }
@@ -67,14 +64,14 @@ class _HomeState extends State<Selectedstate> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.lightBlue,
       appBar: AppBar(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.blue,
         centerTitle: true,
         title: Text(
-          widget.state,
+          'Covid-19',
           style: TextStyle(
-            fontSize: 28.0,
+            fontSize: 40.0,
             color: Colors.black,
           ),
         ),
@@ -83,84 +80,271 @@ class _HomeState extends State<Selectedstate> {
           ? SingleChildScrollView(
               child: Container(
                 padding: EdgeInsets.all(10),
-                height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(
+                        'https://www.bdpinternational.com/uploads/attachments/ck6axr5izcptnksqp75lnejn5-update-images4.0.130.2500.1406.max.png'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
                 child: Center(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        '${widget.state}\'s Covid-19 Updates',
+                        'Covid-19 Updates',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            decoration: TextDecoration.underline,
+                            color: Colors.white60,
                             fontSize: 40,
                             fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        'Sorry!!\nThe Data is not updated yet\nPlease try after some time!!',
+                        '${widget.state}',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 40, fontWeight: FontWeight.bold),
+                            color: Colors.orange,
+                            fontSize: 50,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Divider(
+                        color: Colors.blue,
+                        thickness: 3,
+                        indent: 20,
+                        endIndent: 20,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white, width: 5),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Text(
+                          'Sorry!!\nThe Data is not Available\nPlease try after some time!!',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.red,
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      RaisedButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          side: BorderSide(width: 2),
+                        ),
+                        color: Colors.cyan,
+                        padding: EdgeInsets.all(10),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          'Check for Another State',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 25,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Divider(
+                        color: Colors.black,
+                        thickness: 3,
+                        indent: 10,
+                        endIndent: 10,
+                      ),
+                      Text('"Stay At Home, Stay Safe"',
+                          style: TextStyle(
+                              fontSize: 29,
+                              color: Colors.yellowAccent,
+                              fontWeight: FontWeight.bold)),
+                      Divider(
+                        color: Colors.black,
+                        thickness: 3,
+                        indent: 10,
+                        endIndent: 10,
                       ),
                     ],
                   ),
                 ),
               ),
             )
-          : Container(
-              padding: EdgeInsets.all(10),
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    '${widget.state}\'s Covid-19 Updates',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold),
+          : SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.all(10),
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(
+                        'https://www.bdpinternational.com/uploads/attachments/ck6axr5izcptnksqp75lnejn5-update-images4.0.130.2500.1406.max.png'),
+                    fit: BoxFit.cover,
                   ),
-                  Text(
-                    'Total Cases:$total',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 40,
-                    ),
+                ),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Covid-19 Updates',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.white60,
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        '${widget.state}',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.orange,
+                            fontSize: 50,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Divider(
+                        color: Colors.blue,
+                        thickness: 3,
+                        indent: 20,
+                        endIndent: 20,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white, width: 5),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              'Statistics',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 40,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Divider(
+                              color: Colors.blue,
+                              thickness: 3,
+                              indent: 20,
+                              endIndent: 20,
+                            ),
+                            SizedBox(height: 15),
+                            Text(
+                              'Total : $total',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.yellow,
+                                  fontSize: 40,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              'Active: $active',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.orange,
+                                fontSize: 40,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              'Recovered: $recovered',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.green,
+                                fontSize: 40,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              'Deaths: $deaths',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 40,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(height: 15),
+                            Divider(
+                              color: Colors.blue,
+                              thickness: 3,
+                              indent: 20,
+                              endIndent: 20,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                                'Source: Ministry of Health and Family Welfare',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold)),
+                            SizedBox(height: 10),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      RaisedButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          side: BorderSide(width: 2),
+                        ),
+                        color: Colors.cyan,
+                        padding: EdgeInsets.all(10),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          'Check for Another State',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 25,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Divider(
+                        color: Colors.black,
+                        thickness: 3,
+                        indent: 10,
+                        endIndent: 10,
+                      ),
+                      Text('"Stay At Home, Stay Safe"',
+                          style: TextStyle(
+                              fontSize: 29,
+                              color: Colors.yellowAccent,
+                              fontWeight: FontWeight.bold)),
+                      Divider(
+                        color: Colors.black,
+                        thickness: 3,
+                        indent: 10,
+                        endIndent: 10,
+                      ),
+                    ],
                   ),
-                  Text(
-                    'Active:$active',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 40,
-                    ),
-                  ),
-                  Text(
-                    'Recovered:$recovered',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 40,
-                    ),
-                  ),
-                  Text(
-                    'Deaths:$deaths',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 40,
-                    ),
-                  ),
-                  RaisedButton(
-                    color: Colors.red,
-                    padding: EdgeInsets.all(10),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text('Check Another State'),
-                  ),
-                ],
+                ),
               ),
             ),
     );
