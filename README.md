@@ -11,6 +11,7 @@
 
 ```bash
 git clone <this_repo_url>
+```
 
 2. From the root folder, `covid_19`, run the Flutter application
 
