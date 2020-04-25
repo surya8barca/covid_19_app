@@ -13,7 +13,7 @@
 git clone <this_repo_url>
 ```
 
-2. From the root folder, `covid_19`, run the Flutter application
+2. From the root folder, `covid-19-app`, run the Flutter application
 
 ```bash
 flutter run
