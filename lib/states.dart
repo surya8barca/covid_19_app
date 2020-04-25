@@ -35,149 +35,189 @@ class _HomeState extends State<States> {
   Widget build(BuildContext context) {
     if ((info == null)) {
       return Scaffold(
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Colors.white,
         body: Center(
-          child: SpinKitHourGlass(
-            color: Colors.red,
-            size: 200.0,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'COVID-19 TRACKER',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 35,
+                    color: Colors.red),
+              ),
+              Text(
+                'INDIA',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 35,
+                  color: Colors.blue,
+                ),
+              ),
+              SpinKitPumpingHeart(
+                color: Colors.red,
+                size: 150.0,
+              ),
+            ],
           ),
         ),
       );
     } else {
       return Scaffold(
-        backgroundColor: Colors.lightBlue,
         appBar: AppBar(
-          backgroundColor: Colors.blueGrey,
+          backgroundColor: Colors.lightBlue,
           centerTitle: true,
           title: Text(
-            'Covid-19 Tracker',
+            'Covid-19',
             style: TextStyle(
-              fontSize: 28.0,
+              fontSize: 40.0,
               color: Colors.black,
             ),
           ),
         ),
         body: SingleChildScrollView(
             child: Container(
-          padding: EdgeInsets.all(5),
+          padding: EdgeInsets.all(10),
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: NetworkImage(
+                  'https://www.bdpinternational.com/uploads/attachments/ck6axr5izcptnksqp75lnejn5-update-images4.0.130.2500.1406.max.png'),
+              fit: BoxFit.cover,
+            ),
+          ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              SizedBox(
-                height: 25,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  DropdownButton(
-                    iconEnabledColor: Colors.black,
-                    underline: Container(),
-                    hint: Container(
+              Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.yellow),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      'Select the State you want to Enquire about',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(5),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.black),
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.cyan,
                       ),
-                      padding: EdgeInsets.all(5),
-                      width: MediaQuery.of(context).size.width - 34,
-                      child: Text(
-                        'Select State:',
-                        style: TextStyle(
-                          fontSize: 35,
-                          color: Colors.black,
+                      child: DropdownButton(
+                        iconEnabledColor: Colors.black,
+                        underline: Container(),
+                        hint: Text(
+                          'Select State:',
+                          style: TextStyle(
+                            fontSize: 25,
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
-                    ),
-                    items: states.map<DropdownMenuItem<String>>((value) {
-                      return DropdownMenuItem<String>(
-                        child: Column(
-                          children: <Widget>[
-                            Container(
+                        isExpanded: true,
+                        items: states.map<DropdownMenuItem<String>>((value) {
+                          return DropdownMenuItem<String>(
+                            child: Container(
                               padding: EdgeInsets.all(5),
-                              height: 48,
-                              width: MediaQuery.of(context).size.width - 34,
+                              height: 60,
+                              width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black),
+                                border: Border.all(color: Colors.white),
                                 borderRadius: BorderRadius.circular(10),
-                                color: Colors.cyan,
+                                color: Colors.black,
                               ),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Text(
                                     value,
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
-                                      fontSize: 16,
+                                      fontSize: 15,
                                       fontWeight: FontWeight.bold,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                          ],
+                            value: value,
+                          );
+                        }).toList(),
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
                         ),
-                        value: value,
-                      );
-                    }).toList(),
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+                        onChanged: (chosen) {
+                          setState(() {
+                            stateSelected = chosen;
+                          });
+                        },
+                        value: stateSelected,
+                      ),
                     ),
-                    onChanged: (chosen) {
-                      setState(() {
-                        stateSelected = chosen;
-                      });
-                    },
-                    value: stateSelected,
-                  ),
-                ],
-              ),
-              SizedBox(height: 30),
-              RaisedButton(
-                color: Colors.black,
-                onPressed: () {
-                  if (stateSelected == null) {
-                    Alert(
-                            context: context,
-                            title: 'No State Selected',
-                            desc: 'Please Select a State',
-                            buttons: [],
-                            style: AlertStyle(backgroundColor: Colors.cyan))
-                        .show();
-                  } else {
-                    Route route = MaterialPageRoute(
-                        builder: (context) =>
-                            Selectedstate(info: info, state: stateSelected));
-                    Navigator.push(context, route);
-                  }
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(
-                      Icons.done,
-                      color: Colors.blue,
-                      size: 60,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'Submit',
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 40,
+                    SizedBox(height: 10),
+                    RaisedButton(
+                      padding: EdgeInsets.all(10),
+                      color: Colors.lightBlue,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      onPressed: () {
+                        if (stateSelected == null) {
+                          Alert(
+                                  context: context,
+                                  title: 'Empty Field',
+                                  desc: 'Please Select a State',
+                                  buttons: [],
+                                  style: AlertStyle(
+                                      backgroundColor: Colors.transparent,
+                                      titleStyle: TextStyle(
+                                          color: Colors.red,
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.bold),
+                                      descStyle: TextStyle(
+                                          color: Colors.white, fontSize: 25)))
+                              .show();
+                        } else {
+                          Route route = MaterialPageRoute(
+                              builder: (context) => Selectedstate(
+                                  info: info, state: stateSelected));
+                          Navigator.push(context, route);
+                        }
+                      },
+                      child: Text(
+                        'Submit',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 30,
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 15),
               Divider(
-                color: Colors.black,
-                thickness: 5,
+                color: Colors.blue,
+                thickness: 3,
+                indent: 20,
+                endIndent: 20,
               ),
               SizedBox(
                 height: 10,
