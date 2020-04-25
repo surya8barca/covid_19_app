@@ -1,10 +1,10 @@
 # COVID_19 India 
 > An Android Application that gives the Statistics of Covid-19 of various States in # India  using Flutter
 
-##Home Page
+## Home Page
 ![](./home.gif)
 
-##States Page
+## States Page
 ![](./states.gif)
 
 1. Clone the repository
@@ -20,5 +20,5 @@ flutter run
 
 > Use `--release` for release build
 
-##Source: Ministry of Health and Family Welfare
+## Source: Ministry of Health and Family Welfare
 
