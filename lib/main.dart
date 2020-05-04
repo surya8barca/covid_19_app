@@ -83,8 +83,7 @@ class _HomeState extends State<Home> {
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage(
-                    'https://www.bdpinternational.com/uploads/attachments/ck6axr5izcptnksqp75lnejn5-update-images4.0.130.2500.1406.max.png'),
+                image: AssetImage('images/back.png'),
                 fit: BoxFit.cover,
               ),
             ),
